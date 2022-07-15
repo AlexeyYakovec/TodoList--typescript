@@ -1,33 +1,18 @@
 import React from 'react'
-import { Box, Paper } from '@mui/material'
+import { Box } from '@mui/material'
 
+import type { Todo } from '../../App'
 import TodoItem from './TodoItem'
 
-const todoList = [
-  {
-    id: 1,
-    name: 'task 1',
-    description: 'JavaScript',
-    checked: false,
-  },
-  {
-    id: 2,
-    name: 'task 2',
-    description: 'React',
-    checked: false,
-  },
-  {
-    id: 3,
-    name: 'task 3',
-    description: 'TypeScript',
-    checked: true,
-  },
-]
+interface TodoListProps {
+  todoList: Todo[]
+  onDeleteTodo: (id: Todo['id']) => void
+}
 
-const TodoList = () => (
+const TodoList: React.FC<TodoListProps> = ({ todoList, onDeleteTodo }) => (
   <Box sx={{ marginTop: 2, width: '100%' }}>
     {todoList.map((todo) => (
-      <TodoItem todo={todo} />
+      <TodoItem todo={todo} onDeleteTodo={onDeleteTodo} />
     ))}
   </Box>
 )

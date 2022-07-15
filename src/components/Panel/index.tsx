@@ -1,15 +1,19 @@
 import React, { useState } from 'react'
 import { TextField, Paper, Button } from '@mui/material'
 import AddModeratorIcon from '@mui/icons-material/AddModerator'
+import type { Todo } from '../../App'
 
 const DEFAULT_TODO = { name: '', descritpion: '' }
 
-const Panel = () => {
+interface PanelProps {
+  onAddTodo: ({ name, descritpion }: Omit<Todo, 'id' | 'checked'>) => void
+}
+
+const Panel: React.FC<PanelProps> = ({ onAddTodo }) => {
   const [todo, setTodo] = useState(DEFAULT_TODO)
 
   const onClick = () => {
-    console.log(`inputValue: ${todo} `)
-
+    onAddTodo(todo)
     setTodo(DEFAULT_TODO)
   }
 

@@ -1,19 +1,14 @@
 import React from 'react'
 import { Paper, Box, Typography, IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
-
-type Todo = {
-  id: number
-  name: string
-  description: string
-  checked: boolean
-}
+import type { Todo } from '../../../App'
 
 interface TodoItemProps {
   todo: Todo
+  onDeleteTodo: (id: Todo['id']) => void
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ todo }) => (
+const TodoItem: React.FC<TodoItemProps> = ({ todo, onDeleteTodo }) => (
   <Paper
     elevation={3}
     sx={{
@@ -26,16 +21,20 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => (
       marginTop: '12px',
     }}>
     <Box textAlign='left'>
-      <Typography variant='h5' component='h5' gutterBottom>
+      <Typography
+        sx={{ cursor: 'pointer', textDecorationLine: todo.checked ? 'line-through' : 'none' }}
+        variant='h5'
+        component='h5'
+        gutterBottom>
         {todo.name}
       </Typography>
       <Typography variant='subtitle1' component='div' gutterBottom>
-        {todo.description}
+        {todo.descritpion}
       </Typography>
     </Box>
 
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <IconButton color='info' aria-label='delete'>
+      <IconButton onClick={() => onDeleteTodo(todo.id)} color='error' aria-label='delete'>
         <DeleteIcon />
       </IconButton>
     </Box>

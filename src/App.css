@@ -1,9 +1,9 @@
 .App {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     background-color: white;
     height: 100vh;
     color: rgb(20, 20, 20);
+    margin-top: 12px;
 }
